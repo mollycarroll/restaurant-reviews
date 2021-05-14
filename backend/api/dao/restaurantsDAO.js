@@ -12,7 +12,6 @@ export default class RestaurantsDAO {
             )
         }
     }
-}
 
 static async getRestaurants({
     filters = null,
@@ -56,4 +55,4 @@ static async getRestaurants({
         return { restaurantsList: [], totalNumRestaurants: 0 }
     }
 
-}
+}}
