@@ -1,6 +1,8 @@
+// restaurants variable stores a reference to the database
 let restaurants
 
 export default class RestaurantsDAO {
+    // initially connect to database
     static async injectDB(conn) {
         if (restaurants) {
             return
@@ -13,26 +15,28 @@ export default class RestaurantsDAO {
         }
     }
 
-static async getRestaurants({
-    filters = null,
-    page = 0,
-    restaurantsPerPage = 20,
-} = {}) {
-    let query
-    if (filters) {
-        if ('name' in filters) {
-            query = { $text: { $search: filters['name'] } }
+    // filtering method
+    static async getRestaurants({
+        filters = null,
+        page = 0,
+        restaurantsPerPage = 20,
+    } = {}) {
+        let query
+        if (filters) {
+            if ('name' in filters) {
+                query = { $text: { $search: filters['name'] } }
 
-        } else if ('cuisine' in filters) {
-            query = { 'cuisine': { $eq: filters['cuisine'] } }
+            } else if ('cuisine' in filters) {
+                query = { 'cuisine': { $eq: filters['cuisine'] } }
 
-        } else if ('zipcode' in filters) {
-            query = { 'address.zipcode': { $eq: filters['zipcode'] } }
+            } else if ('zipcode' in filters) {
+                query = { 'address.zipcode': { $eq: filters['zipcode'] } }
+            }
         }
-    }
 
     let cursor
-
+    
+    // cursor is the restaurants query if one exists, if no query, return 0 restaurants
     try {
         cursor = await restaurants
         .find(query)
@@ -41,6 +45,7 @@ static async getRestaurants({
         return { restaurantList: [], totalNumRestaurants: 0 }
     }
 
+    // limits results to 'restaurantsPerPage'; skips to page we are on
     const displayCursor = cursor.limit(restaurantsPerPage).skip(restaurantsPerPage * page)
 
     try {
