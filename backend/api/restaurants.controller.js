@@ -27,8 +27,8 @@ export default class RestaurantsController {
             restaurants: restaurantsList,
             page: page,
             filters: filters,
-            entriesPerPage: restaurantsPerPage,
-            totalResults: totalNumRestaurants,
+            entries_per_page: restaurantsPerPage,
+            total_results: totalNumRestaurants,
         }
         
         // send response as json to whoever called the URL

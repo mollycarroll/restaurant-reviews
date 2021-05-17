@@ -1,6 +1,7 @@
 // restaurants variable stores a reference to the database
 let restaurants
 
+// DAO = data access object
 export default class RestaurantsDAO {
     // initially connect to database
     static async injectDB(conn) {
