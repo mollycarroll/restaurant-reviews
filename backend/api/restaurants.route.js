@@ -5,6 +5,8 @@ import ReviewsController from './reviews.controller.js'
 const router = express.Router()
 
 router.route('/').get(RestaurantsController.apiGetRestaurants)
+router.route('/id/:id').get(RestaurantsController.apiGetRestaurantById)
+router.route('/cuisines').get(RestaurantsController.apiGetRestaurantCuisines)
 
 // review route for users reviewing restaurants
 router

@@ -38,7 +38,7 @@ export default class ReviewsDAO {
     static async updateReview(reviewId, userId, text, date) {
         try {
             const updateResponse = await reviews.updateOne(
-                // look for a review that has the right user and review ID
+                // look for a review that has the right user ID and review ID
                 { user_id: userId, _id: ObjectId(reviewId) },
                 { $set: { text: text, date: date } },
             )
@@ -53,7 +53,7 @@ export default class ReviewsDAO {
 
     static async deleteReview(reviewId, userId) {
         try {
-            // confirm that review and user ID are correct
+            // confirm that review ID and user ID are correct
             const deleteResponse = await reviews.deleteOne({
                 _id: ObjectId(reviewId),
                 user_id: userId,
