@@ -66,7 +66,7 @@ export default class RestaurantsDAO {
 
 }
 
-    static async getRestaurantsByID(id) {
+    static async getRestaurantByID(id) {
         try {
             // pipelines help match different collections together in MongoDB
             // this pipeline will match restaurant ID and find all reviews associate with that restaurant
