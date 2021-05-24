@@ -3,7 +3,7 @@ import { Switch, Router, Link, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddReview from './components/AddReview';
-import Restaurant from './components/Restaurants';
+import Restaurant from './components/Restaurant';
 import RestaurantsList from './components/RestaurantsList';
 import Login from './components/Login';
 
@@ -51,6 +51,7 @@ function App() {
         <Switch>
           <Route exact path={['/', '/restaurants']} component={RestaurantsList} />
 
+          {/* use render instead of component here to pass props */}
           <Route
             path='/restaurants/:id/review'
             render={(props) => (
